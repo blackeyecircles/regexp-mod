@@ -544,7 +544,7 @@ func (re *Regexp) ReplaceAllStringFunc(src string, repl func(string) string) str
 func (re *Regexp) replaceAll(bsrc []byte, src string, nmatch int, repl func(dst []byte, m []int) []byte) []byte {
 	lastMatchEnd := 0 // end position of the most recent match
 	searchPos := 0    // position where we next look for a match
-	var buf []byte
+    buf := make([]byte, 0, len(bsrc))
 	var endPos int
 	if bsrc != nil {
 		endPos = len(bsrc)
